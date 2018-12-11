@@ -10,5 +10,17 @@
     <p>
       Hello tout le monde, voici une chat app pour le backend node-todo-api !
     </p>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      socket.on("connect", () => {
+        console.log("Connecteed to the server");
+      });
+
+      socket.on("disconnect", () => {
+        console.log("disconnected from the server");
+      });
+    </script>
   </body>
 </html>
