@@ -18,13 +18,14 @@ io.on("connection", socket => {
     console.log("User is disonnected");
   });
 
-  socket.emit("createMessage", {
-    to: "coucou@example.com",
-    text: "rdv lundi prochain france tv"
-  });
-
   socket.on("createMessage", message => {
-    console.log("message received", message);
+    console.log("CreateMessage : ", message);
+
+    io.emit("newMessage", {
+      text: message.text,
+      from: message.from,
+      createdAt: new Date().getTime()
+    });
   });
 });
 
