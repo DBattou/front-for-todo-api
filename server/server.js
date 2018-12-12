@@ -21,6 +21,11 @@ io.on("connection", socket => {
   socket.on("createMessage", message => {
     console.log("CreateMessage : ", message);
 
+    socket.emit("newMessage", {
+      from: "Admin",
+      text: "Welcome to the chatroom"
+    });
+
     socket.broadcast.emit("newMessage", {
       text: message.text,
       from: message.from,
