@@ -12,10 +12,19 @@ var io = socketIO(server);
 app.use(express.static(publicPath));
 
 io.on("connection", socket => {
-  console.log("NEw user connected");
+  console.log("New user connected");
 
   socket.on("disconnect", () => {
     console.log("User is disonnected");
+  });
+
+  socket.emit("createMessage", {
+    to: "coucou@example.com",
+    text: "rdv lundi prochain france tv"
+  });
+
+  socket.on("createMessage", message => {
+    console.log("message received", message);
   });
 });
 
