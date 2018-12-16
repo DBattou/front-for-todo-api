@@ -1,3 +1,5 @@
+const moment = require("moment");
+
 let generateMessage = (from = "Unknown", text = "") => {
   if (from === "Unknown" && text === "") {
     throw "Empty object";
@@ -6,7 +8,7 @@ let generateMessage = (from = "Unknown", text = "") => {
   return {
     from,
     text,
-    createdAt: new Date().getTime()
+    createdAt: moment().valueOf()
   };
 };
 
@@ -14,7 +16,7 @@ let generateLocationMessage = (from, latitude, longitude) => {
   return {
     from,
     url: `https://www.google.com/maps?q=${latitude},${longitude}`,
-    createdAt: new Date().getTime()
+    createdAt: moment().valueOf()
   };
 };
 
