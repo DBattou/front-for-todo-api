@@ -10,8 +10,15 @@
     <p>
       Hello tout le monde, voici une chat app pour le backend node-todo-api !
     </p>
+    <ol id="messages"></ol>
+
+    <form id="message-form">
+      <input name="message" type="text" placeholder="Enter a message" />
+      <button>Send</button>
+    </form>
 
     <script src="/socket.io/socket.io.js"></script>
+    <script src="libs/package.js"></script>
     <script src="/js/index.js"></script>
   </body>
 </html>
