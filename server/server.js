@@ -2,7 +2,7 @@ const path = require("path");
 const http = require("http");
 const express = require("express");
 const socketIO = require("socket.io");
-const { generateMessage } = require("./utils/message");
+const { generateMessage, generateLocationMessage } = require("./utils/message");
 
 let messageGenere = generateMessage("Admin", "Welcome to the chatroom");
 console.log("Battou Debug" + messageGenere);
@@ -32,18 +32,22 @@ io.on("connection", socket => {
     console.log("User is disonnected");
   });
 
-  socket.on("createMessage", message => {
+  socket.on("createMessage", (message, callback) => {
     console.log("CreateMessage : ", message);
 
     io.emit("newMessage", {
       from: message.from,
       text: message.text
     });
+
+    callback();
   });
 
-  socket.on("createEmail", (email, callback) => {
-    let data = `Email correctly received from ${email.from}`;
-    callback(data);
+  socket.on("createLocationMessage", location => {
+    io.emit(
+      "newLocationMessage",
+      generateLocationMessage("Admin", location.latitude, location.longitude)
+    );
   });
 });
 

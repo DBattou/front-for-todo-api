@@ -5,17 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Chat app</title>
+    <link rel="stylesheet" href="/css/styles.css"></link>
   </head>
-  <body>
-    <p>
-      Hello tout le monde, voici une chat app pour le backend node-todo-api !
-    </p>
-    <ol id="messages"></ol>
+  <body class="chat">
 
-    <form id="message-form">
-      <input name="message" type="text" placeholder="Enter a message" />
-      <button>Send</button>
-    </form>
+    <div class="chat__sidebar">
+      <h3>People</h3>
+      <div id="users"></div>
+    </div>
+
+
+    <div class="chat__main">
+      <ol id="messages" class="chat__messages"></ol>
+      <div class="chat__footer">
+        <form id="message-form">
+          <input name="message" type="text" placeholder="Enter a message" autofocus autocomplete="off"/>
+          <button>Send</button>
+        </form>
+        <button id="send-location">Send Location</button>
+      </div>
+    </div>
+    
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="libs/package.js"></script>

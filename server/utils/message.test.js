@@ -1,6 +1,6 @@
 const expect = require("expect");
 
-let { generateMessage } = require("./message");
+let { generateMessage, generateLocationMessage } = require("./message");
 
 describe("Message generator", () => {
   it("should return a unknown sender", () => {
@@ -38,6 +38,19 @@ describe("Message generator", () => {
     expect(message).toMatchObject({
       from: "Battou",
       text: "Hello everybody"
+    });
+  });
+});
+
+describe("Generate location", () => {
+  it("Should correctly format the location of the actual user", () => {
+    // https://www.google.com/maps?q=48.8712573,2.3602622
+
+    let location = generateLocationMessage("Admin", 48.8712573, 2.3602622);
+
+    expect(location).toMatchObject({
+      from: "Admin",
+      url: "https://www.google.com/maps?q=48.8712573,2.3602622"
     });
   });
 });
